@@ -1,0 +1,41 @@
+% Apêndices contêm material elaborado pelo próprio autor.
+% Caso deseje página divisória própria, descomente \partapendices.
+\begin{apendicesenv}
+  % \partapendices
+  \chapter{Título do apêndice}
+  Inclua aqui o material produzido pelo autor que complementa o trabalho (questionários, códigos-fonte, deduções extensas, entre outros).
+
+% --------------------------------------------------------------------------
+% Exemplo opcional de inserção de códigos-fonte (pacote listings)
+% Linguagens prontas para uso: Python, R, SQL, Matlab e VBA.
+% Acentos UTF-8 em português são suportados diretamente nos comentários e
+% strings. Caso utilize códigos-fonte no TCC, lembre-se de descomentar
+% \input{pre-textuais/lista-de-codigos} em tcc-depro-ufs.tex.
+% --------------------------------------------------------------------------
+%
+% 1) Código escrito diretamente no arquivo .tex:
+%
+% \begin{lstlisting}[
+%   language=Python,
+%   caption={Cálculo de indicador de eficiência operacional},
+%   label={cod:exemplo-python}
+% ]
+% # Cálculo da eficiência média com comentários em UTF-8 (ação, produção)
+% def calcular_eficiencia(producao_real, capacidade_nominal):
+%     if capacidade_nominal <= 0:
+%         raise ValueError("Capacidade deve ser maior que zero.")
+%     return (producao_real / capacidade_nominal) * 100.0
+%
+% print(f"Eficiência: {calcular_eficiencia(420, 500):.1f}%")
+% \end{lstlisting}
+% \fontecodigo{Elaboração própria}
+%
+% 2) Importação de arquivo externo (ex.: Python, R, SQL, Matlab ou VBA):
+%
+% \lstinputlisting[
+%   language=VBA,
+%   caption={Rotina de otimização no Excel Solver via macro VBA},
+%   label={cod:exemplo-vba}
+% ]{dados/macro-solver.bas}
+% \fontecodigo{Elaboração própria}
+\end{apendicesenv}

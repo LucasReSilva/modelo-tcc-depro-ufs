@@ -1,0 +1,23 @@
+\chapter{Resultados e discussão}
+Apresente os resultados obtidos e discuta seu significado à luz da literatura revisada. A Tabela~\ref{tab:exemplo-csv} demonstra como importar dados diretamente de um arquivo CSV externo utilizando o pacote \texttt{csvsimple}.
+
+% ATENÇÃO: o arquivo CSV deve estar previamente tratado e pronto para exibição
+% (casas decimais arredondadas, separador decimal com vírgula no padrão
+% brasileiro, separador de colunas ";" e eventuais totais já calculados).
+% O LaTeX apenas lê e formata a tabela visualmente, sem processar dados brutos.
+\begin{table}[htbp]
+  \centering
+  \caption{Desempenho operacional importado de arquivo CSV}\label{tab:exemplo-csv}
+  \tagpdfsetup{table/header-rows={1}}
+  \csvreader[
+    separator=semicolon,
+    respect all,
+    tabular=lrrr,
+    table head=\toprule \textbf{Linha} & \textbf{Tempo de ciclo (min)} & \textbf{Eficiência (\%)} & \textbf{Produção diária (unid.)} \\ \midrule,
+    late after line=\\,
+    table foot=\bottomrule
+  ]{dados/exemplo-tabela.csv}{}{%
+    \csvcoli & \csvcolii & \csvcoliii & \csvcoliv
+  }
+  \fonte{Elaboração própria}
+\end{table}

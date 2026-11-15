@@ -1,0 +1,40 @@
+\chapter{Procedimentos metodológicos}
+Descreva o enquadramento metodológico da pesquisa~\cite{gil2022}, o objeto de estudo, os instrumentos de coleta de dados e as etapas de análise. A Figura~\ref{fig:roteiro} apresenta um exemplo editável de roteiro metodológico desenhado diretamente em TikZ (fluxo sequencial composto por coleta de dados, etapas 1 a 4 e análise dos resultados).
+
+\begin{figure}[htbp]
+  \centering
+  \caption{Roteiro de trabalho}\label{fig:roteiro}
+  \begin{tikzpicture}[
+    node distance=0.55cm,
+    etapa/.style={
+      rectangle,
+      rounded corners=2pt,
+      draw=blue!55!black,
+      line width=0.8pt,
+      minimum width=8cm,
+      text width=7.2cm,
+      minimum height=0.72cm,
+      align=center,
+      font=\small
+    },
+    seta/.style={
+      -{Triangle[length=2.2mm,width=3.2mm]},
+      draw=blue!45!gray!60,
+      line width=1.6pt
+    }
+  ]
+    \node[etapa] (e0) {Coleta de dados};
+    \node[etapa, below=of e0] (e1) {Etapa 1};
+    \node[etapa, below=of e1] (e2) {Etapa 2};
+    \node[etapa, below=of e2] (e3) {Etapa 3};
+    \node[etapa, below=of e3] (e4) {Etapa 4};
+    \node[etapa, below=of e4] (e5) {Análise dos resultados};
+
+    \draw[seta] (e0) -- (e1);
+    \draw[seta] (e1) -- (e2);
+    \draw[seta] (e2) -- (e3);
+    \draw[seta] (e3) -- (e4);
+    \draw[seta] (e4) -- (e5);
+  \end{tikzpicture}
+  \fonte{Elaboração própria}
+\end{figure}

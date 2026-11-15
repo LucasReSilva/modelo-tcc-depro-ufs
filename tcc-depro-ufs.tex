@@ -1,0 +1,271 @@
+% Modelo de TCC do DEPRO/UFS, adaptado do DOCX "Modelo DEPRO 003" e em conformidade
+% com as normas da ABNT (NBR 14724, NBR 6023, NBR 6024, NBR 6027, NBR 6028, NBR 10520).
+% Compilação recomendada: pdfLaTeX + BibTeX + pdfLaTeX + pdfLaTeX (ou latexmk).
+\documentclass[
+  12pt,
+  oneside,
+  a4paper,
+  chapter=TITLE,
+  english,
+  brazil
+]{abntex2}
+
+% ---
+% Pacotes fundamentais
+% ---
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{mathptmx}
+  \InputIfFileExists{glyphtounicode}{}{}
+  \pdfgentounicode=1
+\fi
+\usepackage{babel}
+\usepackage{microtype}
+\usepackage{graphicx}
+\makeatletter
+\@ifundefined{KV@Gin@alt}{\define@key{Gin}{alt}{}}{}
+\makeatother
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{csvsimple}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{etoolbox}
+\usepackage[alf]{abntex2cite}
+\IfFileExists{hyperxmp.sty}{\usepackage{hyperxmp}}{}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
+\IfFileExists{pdfpages.sty}{\usepackage{pdfpages}}{}
+\providecommand{\tagpdfsetup}[1]{}
+
+% ---
+% Tipografia dos títulos conforme o modelo DEPRO/UFS e ABNT NBR 6024
+% Seção primária: 12pt, caixa alta, negrito.
+% Seção secundária: 12pt, inicial maiúscula, negrito.
+% Seção terciária: 12pt, inicial maiúscula, negrito e itálico.
+% Seção quaternária: 12pt, inicial maiúscula, itálico.
+% ---
+\renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\renewcommand{\ABNTEXsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfont}{\normalfont\bfseries\itshape}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsectionfont}{\normalfont\itshape}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+
+% Sincronização do Sumário com os títulos do texto (ABNT NBR 6027 / 6024)
+\renewcommand{\cftsectionfont}{\normalfont\normalsize\bfseries}
+\renewcommand{\cftsectionpagefont}{\normalfont\normalsize\bfseries}
+\renewcommand{\cftsubsectionfont}{\normalfont\normalsize\bfseries\itshape}
+\renewcommand{\cftsubsectionpagefont}{\normalfont\normalsize\bfseries\itshape}
+\renewcommand{\cftsubsubsectionfont}{\normalfont\normalsize\itshape}
+\renewcommand{\cftsubsubsectionpagefont}{\normalfont\normalsize\itshape}
+
+% ---
+% Formatação geral do texto, listas e equações
+% ---
+\graphicspath{{figuras/}}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\OnehalfSpacing
+
+% Título da lista de figuras compatível com o modelo DEPRO (após babel)
+\addto\captionsbrazil{%
+  \renewcommand{\listfigurename}{Lista de figuras}%
+}
+
+% Numeração contínua de equações ao longo do trabalho: (1), (2), ...
+\counterwithout{equation}{chapter}
+
+% ---
+% Ambiente flutuante e Lista de Quadros (padrão oficial abnTeX2/memoir)
+% ---
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space}
+\renewcommand*{\cftquadroaftersnum}{\hfill\textendash\hfill}
+\setlength{\cftquadroindent}{0em}
+\setlength{\cftquadronumwidth}{\cftfigurenumwidth}
+\setfloatlocations{quadro}{htbp}
+\providecommand*{\quadroautorefname}{Quadro}
+
+% Macro auxiliar para cabeçalhos centralizados em tabelas/quadros
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+% ---
+% Suporte a códigos-fonte (listings + integração nativa memoir/abnTeX2)
+% ---
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Lista de códigos}
+\providecommand*{\lstlistingautorefname}{Código}
+
+% Integra a lista .lol ao sistema nativo do memoir/abnTeX2 sem conflitar com o
+% contador criado internamente pelo pacote listings em \AtBeginDocument.
+\makeatletter
+\begingroup
+  \let\newcounter\@gobble
+  \let\setcounter\@gobbletwo
+  \globaldefs\@ne
+  \let\c@loldepth\@ne
+  \newlistof{listofcodigos}{lol}{\lstlistlistingname}
+  \newlistentry{lstlisting}{lol}{0}
+\endgroup
+\makeatother
+
+\renewcommand{\cftlstlistingname}{\lstlistingname\space}
+\renewcommand*{\cftlstlistingaftersnum}{\hfill\textendash\hfill}
+\setlength{\cftlstlistingindent}{0em}
+\setlength{\cftlstlistingnumwidth}{\cftfigurenumwidth}
+\AtBeginDocument{\counterwithout{lstlisting}{chapter}}
+
+% Definição da linguagem VBA com palavras-chave comuns de Excel/Solver
+\lstdefinelanguage{VBA}[Visual]{Basic}{
+  sensitive=false,
+  morekeywords={
+    Workbook, Worksheet, Worksheets, Range, Cells, ActiveSheet,
+    ThisWorkbook, SolverOk, SolverSolve, SolverReset, Collection, Dictionary
+  },
+  deletestring=[b]",
+  morestring=[d]"
+}
+
+% Estilo global limpo e legível para listagens de código-fonte
+\definecolor{codigofundo}{gray}{0.97}
+\definecolor{codigoborda}{gray}{0.82}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!65!black}\bfseries,
+  commentstyle=\color{green!40!black}\itshape,
+  stringstyle=\color{red!55!black},
+  numberstyle=\tiny\color{black!55},
+  backgroundcolor=\color{codigofundo},
+  rulecolor=\color{codigoborda},
+  frame=single,
+  framesep=4pt,
+  xleftmargin=1.8em,
+  framexleftmargin=1.4em,
+  numbers=left,
+  numbersep=8pt,
+  captionpos=t,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=flexible,
+  keepspaces=true,
+  extendedchars=true,
+  showstringspaces=false,
+  tabsize=4,
+  literate=
+    {á}{{\'{a}}}1 {é}{{\'{e}}}1 {í}{{\'{\i}}}1 {ó}{{\'{o}}}1 {ú}{{\'{u}}}1
+    {Á}{{\'{A}}}1 {É}{{\'{E}}}1 {Í}{{\'{I}}}1 {Ó}{{\'{O}}}1 {Ú}{{\'{U}}}1
+    {à}{{\`{a}}}1 {À}{{\`{A}}}1
+    {â}{{\^{a}}}1 {ê}{{\^{e}}}1 {ô}{{\^{o}}}1
+    {Â}{{\^{A}}}1 {Ê}{{\^{E}}}1 {Ô}{{\^{O}}}1
+    {ã}{{\~{a}}}1 {õ}{{\~{o}}}1
+    {Ã}{{\~{A}}}1 {Õ}{{\~{O}}}1
+    {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1
+    {ü}{{\"{u}}}1 {Ü}{{\"{U}}}1
+    {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1 {°}{{\textdegree}}1
+    {–}{{\textendash}}1 {—}{{\textemdash}}1
+}
+
+\newcommand{\fontecodigo}[1]{\par\nopagebreak\vspace{2pt}\fonte{#1}}
+
+% ---
+% Dados do trabalho (PERSONALIZE AQUI)
+% ---
+\newcommand{\nomealuno}{Nome completo do aluno}
+\newcommand{\titulotrabalho}{Título do trabalho}
+\newcommand{\subtitulotrabalho}{} % Deixe vazio {} se não houver subtítulo
+\newcommand{\nomeorientador}{Nome do Professor}
+\newcommand{\titulacaoorientador}{Titulação}
+\newcommand{\nomecoorientador}{} % Preencha se houver coorientador; deixe vazio {} caso contrário
+\newcommand{\cidade}{São Cristóvão/SE}
+\newcommand{\anoentrega}{2026}
+\newcommand{\dataaprovacao}{[dia] de [mês] de \anoentrega}
+
+\titulo{\titulotrabalho\ifdefempty{\subtitulotrabalho}{}{: \subtitulotrabalho}}
+\autor{\nomealuno}
+\local{\cidade}
+\data{\anoentrega}
+\orientador{\nomeorientador}
+\instituicao{Universidade Federal de Sergipe}
+\tipotrabalho{Trabalho de Conclusão de Curso}
+\preambulo{Trabalho de Conclusão do Curso de Graduação em Engenharia de Produção do Centro de Ciências Exatas e Tecnologia da Universidade Federal de Sergipe, como requisito parcial à obtenção do título de bacharel em Engenharia de Produção.}
+
+% Metadados, idioma, marcadores e aparência dos links no PDF (acessibilidade)
+\hypersetup{
+  hidelinks,
+  pdflang={pt-BR},
+  pdfdisplaydoctitle=true,
+  bookmarksnumbered=true
+}
+\AtBeginDocument{%
+  \hypersetup{
+    pdftitle={\titulotrabalho\ifdefempty{\subtitulotrabalho}{}{: \subtitulotrabalho}},
+    pdfauthor={\nomealuno},
+    pdfsubject={Trabalho de Conclusão de Curso - Engenharia de Produção (DEPRO/UFS)},
+    pdfcreator={LaTeX com abnTeX2}
+  }%
+}
+
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing
+
+% ---
+% Elementos Pré-Textuais
+% ---
+\input{pre-textuais/capa}
+\input{pre-textuais/folha-de-rosto}
+% \includepdf{pre-textuais/ficha-catalografica.pdf} % Obrigatório na versão final (BICEN/UFS)
+\input{pre-textuais/folha-de-aprovacao}
+% \input{pre-textuais/dedicatoria} % Opcional (arquivo já existe em pre-textuais/; descomente se desejar utilizar)
+\input{pre-textuais/agradecimentos}
+% \input{pre-textuais/epigrafe}    % Opcional (arquivo já existe em pre-textuais/; descomente se desejar utilizar)
+\input{pre-textuais/resumo}
+\input{pre-textuais/abstract}
+\input{pre-textuais/lista-de-figuras}
+\input{pre-textuais/lista-de-quadros}
+\input{pre-textuais/lista-de-tabelas}
+% \input{pre-textuais/lista-de-codigos} % Opcional: descomente se o TCC incluir códigos-fonte
+\input{pre-textuais/siglas}
+\input{pre-textuais/simbolos}
+\input{pre-textuais/sumario}
+
+% ---
+% Elementos Textuais
+% ---
+\textual
+
+\input{capitulos/introducao}
+\input{capitulos/objetivos}
+\input{capitulos/revisao-da-literatura}
+\input{capitulos/procedimentos-metodologicos}
+\input{capitulos/resultados-e-discussao}
+\input{capitulos/consideracoes-finais}
+
+% ---
+% Elementos Pós-Textuais
+% ---
+\postextual
+
+\input{pos-textuais/referencias}
+\input{pos-textuais/apendices}
+\input{pos-textuais/anexos}
+
+\end{document}

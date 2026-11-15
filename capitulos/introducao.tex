@@ -1,0 +1,56 @@
+\chapter{Introdução}
+Apresente aqui o contexto, o problema de pesquisa, a justificativa e a organização do trabalho. As diretrizes gerais de estrutura e apresentação de trabalhos acadêmicos estão definidas na norma vigente \cite{abnt14724}; um exemplo de citação no texto pode ser feito com \citeonline{gil2022}.
+
+A Figura~\ref{fig:exemplo} ilustra a inserção de uma figura baseada no modelo institucional~\cite{depro2021}, o Quadro~\ref{qua:exemplo} exemplifica um quadro editável (fechado nas quatro laterais, voltado a dados qualitativos) e a Tabela~\ref{tab:exemplo} demonstra uma tabela numérica no padrão tabular aberto.
+
+\begin{figure}[htbp]
+  \centering
+  \caption{Título da figura}\label{fig:exemplo}
+  \includegraphics[height=1.8cm,alt={Logotipo do Departamento de Engenharia de Produção da UFS utilizado como figura de exemplo}]{figuras/logo-depro.pdf}
+  \fonte{\citeonline{depro2021}}
+\end{figure}
+
+\begin{quadro}[htbp]
+  \centering
+  \caption{Título do quadro}\label{qua:exemplo}
+  \tagpdfsetup{table/header-rows={1}}
+  \begin{tabularx}{\textwidth}{|>{\bfseries\raggedright\arraybackslash}p{3.8cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    \rowcolor{gray!12}
+    \multicolumn{1}{|c|}{\textbf{Coluna A}} & \multicolumn{1}{c|}{\textbf{Coluna B}} & \multicolumn{1}{c|}{\textbf{Coluna C}} \\ \hline
+    Exemplo & Texto editável & Resultado \\ \hline
+    Outro exemplo & Texto editável & Resultado \\ \hline
+  \end{tabularx}
+  \fonte{Elaboração própria}
+\end{quadro}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Título da tabela}\label{tab:exemplo}
+  \tagpdfsetup{table/header-rows={1}}
+  \begin{tabular}{lrrr}
+    \toprule
+    \textbf{Item} & \textbf{Quantidade (unid.)} & \textbf{Área ($\text{m}^2$)} & \textbf{Custo (R\$)} \\
+    \midrule
+    A & 6.529 & 9.482 & 647 \\
+    B & 4.894 & 6.524 & 644 \\
+    C & 556 & 5.675 & 238 \\
+    D & 2.546 & 649 & 787 \\
+    \midrule
+    \textbf{Total} & \textbf{14.525} & \textbf{22.330} & \textbf{2.316} \\
+    \bottomrule
+  \end{tabular}
+  \fonte{Elaboração própria}
+\end{table}
+
+Um exemplo de equação numerada e referenciada como Equação~\eqref{eq:area} é dado por:
+\begin{equation}\label{eq:area}
+  A = \pi r^2
+\end{equation}
+\needspace{4\baselineskip}
+\noindent em que:
+\par\nopagebreak\vspace{0.3em}\nopagebreak
+\noindent\begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}X@{\qquad}l@{}}
+  $A$: & área de um círculo & $[\text{m}^2]$ \\
+  $r$: & raio da circunferência & $[\text{m}]$
+\end{tabularx}

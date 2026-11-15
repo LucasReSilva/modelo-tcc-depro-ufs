@@ -1,0 +1,16 @@
+% Anexos contêm documentos não elaborados pelo autor.
+% IMPORTANTE: substitua ou remova este anexo de instruções antes da entrega final do TCC.
+% Caso deseje página divisória própria, descomente \partanexos.
+\begin{anexosenv}
+  % \partanexos
+  \chapter{Instruções para utilização do modelo em LaTeX}
+
+  Edite os comandos de identificação no preâmbulo de \texttt{tcc-depro-ufs.tex} (nome do aluno, título, subtítulo opcional, orientador, coorientador opcional, cidade e ano). Escreva cada capítulo em um arquivo na pasta \texttt{capitulos/} e inclua-o após \texttt{\textbackslash textual}; os títulos de \texttt{\textbackslash chapter} e \texttt{\textbackslash section} são numerados e incluídos no sumário automaticamente.
+
+  Para inserir figuras e tabelas, utilize os ambientes \texttt{figure} e \texttt{table}, informando legenda, rótulo e fonte com \texttt{\textbackslash caption}, \texttt{\textbackslash label} e \texttt{\textbackslash fonte}. Para quadros, utilize o ambiente \texttt{quadro}; a lista de quadros é gerada automaticamente e separada das listas de figuras e tabelas. Para códigos-fonte, utilize o ambiente \texttt{lstlisting} (bloco \texttt{\textbackslash begin\{lstlisting\}} e \texttt{\textbackslash end\{lstlisting\}}) seguido de \texttt{\textbackslash fontecodigo} para indicar a fonte; caso deseje exibir a lista de códigos, ative \path{pre-textuais/lista-de-codigos.tex} em \path{tcc-depro-ufs.tex}.
+
+  Acrescente as entradas bibliográficas no arquivo \texttt{referencias.bib} e cite-as no texto com \texttt{\textbackslash cite} (citação entre parênteses) ou \texttt{\textbackslash citeonline} (citação integrada à frase). Para editar e compilar localmente, recomenda-se abrir a pasta do projeto no \textbf{Oleafly} (\url{https://github.com/Oleafly/Oleafly}) com \texttt{tcc-depro-ufs.tex} como documento principal, ou compilar via \texttt{latexmk}/\texttt{pdflatex} até que sumário, listas e referências cruzadas estejam atualizados.
+
+  Antes da versão definitiva do TCC, substitua o conteúdo de \path{pos-textuais/anexos.tex} por eventuais anexos ou comente a chamada deste arquivo em \path{tcc-depro-ufs.tex}.
+
+\end{anexosenv}

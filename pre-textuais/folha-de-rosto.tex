@@ -1,0 +1,19 @@
+% Não utilizar titlingpage aqui para preservar a contagem sequencial a partir
+% da folha de rosto, conforme a ABNT NBR 14724 (seção 5.3).
+\thispagestyle{empty}
+\pdfbookmark[0]{Folha de rosto}{folha-de-rosto}
+\begin{center}
+  \MakeUppercase{\nomealuno}\par
+  \vspace*{3cm}
+  {\SingleSpacing\bfseries\MakeUppercase{\titulotrabalho}\ifdefempty{\subtitulotrabalho}{}{: \normalfont\subtitulotrabalho}\par}
+  \vspace*{3cm}
+\end{center}
+\noindent\hspace*{0.5\textwidth}\begin{minipage}{0.5\textwidth}\SingleSpacing\small
+  \imprimirpreambulo
+  \par\vspace{0.7cm}
+  Orientador: \nomeorientador % Altere para Orientadora: / Coorientadora: quando aplicável
+  \ifdefempty{\nomecoorientador}{}{\\Coorientador: \nomecoorientador}
+\end{minipage}
+\vfill
+\begin{center}\cidade\\\anoentrega\end{center}
+\cleardoublepage
