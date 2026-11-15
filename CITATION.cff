@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "Se você utilizar este modelo em seu trabalho acadêmico ou pesquisa, cite-o conforme abaixo."
+title: "Modelo LaTeX de TCC — DEPRO/UFS (modelo-tcc-depro-ufs)"
+abstract: "Modelo não oficial em LaTeX (abnTeX2) para Trabalhos de Conclusão de Curso (TCC) do Departamento de Engenharia de Produção (DEPRO) da Universidade Federal de Sergipe (UFS), adaptado do modelo institucional DOCX e alinhado às normas ABNT (NBR 14724, NBR 6023, NBR 6024, NBR 6027, NBR 6028 e NBR 10520)."
+type: software
+authors:
+  - family-names: Silva
+    given-names: Lucas
+  - name: "Contribuidores do projeto modelo-tcc-depro-ufs"
+repository-code: "https://github.com/LucasReSilva/modelo-tcc-depro-ufs"
+url: "https://github.com/LucasReSilva/modelo-tcc-depro-ufs"
+license: MIT
+version: 1.0.0
+date-released: 2026-11-15
+keywords:
+  - latex
+  - abntex2
+  - abnt
+  - tcc
+  - ufs
+  - depro
+  - engenharia-de-producao
+  - academic-writing

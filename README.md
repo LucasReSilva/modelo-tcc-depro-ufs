@@ -6,9 +6,10 @@
 
 <p align="center">
   <a href="https://github.com/LucasReSilva/modelo-tcc-depro-ufs/actions/workflows/build.yml"><img src="https://github.com/LucasReSilva/modelo-tcc-depro-ufs/actions/workflows/build.yml/badge.svg" alt="Compilar PDF (LaTeX)"></a>
+  <a href="https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2FLucasReSilva%2Fmodelo-tcc-depro-ufs%2Farchive%2Frefs%2Fheads%2Fmain.zip&engine=pdflatex&main_document=tcc-depro-ufs.tex"><img src="https://img.shields.io/badge/Overleaf-Abrir%20no%20Overleaf-47A141?logo=overleaf&logoColor=white" alt="Abrir no Overleaf"></a>
   <a href="https://github.com/abntex/abntex2"><img src="https://img.shields.io/badge/LaTeX-abnTeX2-008080?logo=latex&logoColor=white" alt="LaTeX abnTeX2"></a>
   <img src="https://img.shields.io/badge/ABNT-NBR%2014724%20%7C%2010520%20%7C%206023-1D4ED8" alt="Normas ABNT">
-  <a href="https://github.com/Oleafly/Oleafly"><img src="https://img.shields.io/badge/IDE%20local-Oleafly-0F766E?logo=github&logoColor=white" alt="IDE local Oleafly"></a>
+  <a href="https://oleafly.com/"><img src="https://img.shields.io/badge/IDE%20local-Oleafly-0F766E?logo=github&logoColor=white" alt="IDE local Oleafly"></a>
   <img src="https://img.shields.io/badge/DEPRO%2FUFS-Engenharia%20de%20Produ%C3%A7%C3%A3o-0A1E52" alt="DEPRO UFS">
   <a href="LICENSE"><img src="https://img.shields.io/badge/Licen%C3%A7a-MIT-yellow.svg" alt="Licença MIT"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-bem--vindos-brightgreen.svg" alt="PRs bem-vindos"></a>
@@ -24,7 +25,7 @@ Modelo não oficial em LaTeX (`abnTeX2`) para Trabalhos de Conclusão de Curso (
 - **Quadros e Tabelas diferenciados:** ambiente nativo `quadro` (fechado nas quatro laterais, para dados qualitativos, gerando corretamente `Quadro 1 – ...` na Lista de Quadros) separado de `table` (padrão aberto com `booktabs`, para dados numéricos).
 - **Códigos-fonte com `listings`:** suporte nativo compatível com `pdfLaTeX`, quebra de página automática, acentos UTF-8 em português, linguagens pré-configuradas (`Python`, `R`, `SQL`, `Matlab`, `VBA`) e lista de códigos opcional.
 - **Fluxograma editável em TikZ:** diagrama metodológico em `capitulos/procedimentos-metodologicos.tex` gerado diretamente via código vetorial.
-- **Compilação automatizada:** pronto para compilação local com **[Oleafly](https://github.com/Oleafly/Oleafly)** (recomendado), linha de comando (`latexmk` / `pdflatex` + `bibtex`), uso online no **Overleaf** e verificação contínua via GitHub Actions.
+- **Compilação automatizada:** pronto para compilação local com **[Oleafly](https://oleafly.com/)** (recomendado), linha de comando (`latexmk` / `pdflatex` + `bibtex`), uso online no **Overleaf** (com abertura direta em 1 clique) e verificação contínua via GitHub Actions.
 
 ## Estrutura do projeto
 
@@ -32,6 +33,7 @@ Modelo não oficial em LaTeX (`abnTeX2`) para Trabalhos de Conclusão de Curso (
 modelo-tcc-depro-ufs/
 ├── tcc-depro-ufs.tex            # Arquivo principal (preâmbulo e estrutura)
 ├── referencias.bib              # Base bibliográfica (BibTeX / abntex2cite)
+├── codigos/                     # Arquivos de código-fonte externos importados via listings
 ├── dados/                       # Arquivos CSV externos para tabelas (csvsimple)
 ├── figuras/                     # Logotipos vetoriais (logo-ufs.pdf, logo-depro.pdf, logo-depro.svg) e imagens
 ├── pre-textuais/                # Capa, folhas iniciais, resumos, listas e sumário
@@ -39,17 +41,43 @@ modelo-tcc-depro-ufs/
 ├── pos-textuais/                # Referências, apêndices e anexos
 ├── .latexmkrc                   # Configuração do latexmk
 ├── Makefile                     # Atalhos de compilação e limpeza
-└── .github/workflows/build.yml  # Compilação automática no GitHub Actions
+├── .github/workflows/build.yml  # Compilação automática no GitHub Actions
+├── CHANGELOG.md                 # Histórico de versões do modelo
+├── CITATION.cff                 # Metadados de citação acadêmica (CFF 1.2.0)
+├── CODE_OF_CONDUCT.md           # Código de conduta da comunidade
+├── CONTRIBUTING.md              # Guia de contribuição e validação
+├── LICENSE                      # Licença MIT do código-fonte LaTeX
+├── SECURITY.md                  # Política de segurança e relato de vulnerabilidades
+└── THIRD_PARTY_LICENSES.md      # Licenças de pacotes LaTeX, CI e ativos institucionais
 ```
 
 ## Como usar
 
 ### Opção 1: Compilação local com Oleafly (recomendado)
 
-Para editar e compilar localmente sem depender da nuvem, recomenda-se o **[Oleafly](https://github.com/Oleafly/Oleafly)** — uma IDE LaTeX de código aberto (alternativa local ao Overleaf para Windows, macOS e Linux, com visualização em tempo real e SyncTeX).
+Para editar e compilar localmente sem depender da nuvem, recomenda-se o **[Oleafly](https://oleafly.com/)** ([repositório oficial](https://github.com/Oleafly/Oleafly)) — uma IDE LaTeX de código aberto para Windows, macOS e Linux, com visualização em tempo real e SyncTeX.
 
-1. Baixe ou clone este repositório e abra a pasta `modelo-tcc-depro-ufs` no **Oleafly** (requer uma distribuição LaTeX instalada, como TeX Live ou MiKTeX, com os pacotes `abntex2`, `abntex2cite`, `babel`, `mathptmx`, `tikz`, `microtype`, `booktabs`, `tabularx`, `csvsimple`, `listings`, `xcolor`, `amsmath`, `amssymb`, `etoolbox` e `iftex`; além de `hyperxmp`, `xurl` e `pdfpages` opcionais).
-2. Selecione `tcc-depro-ufs.tex` como documento principal e compile usando **`pdfLaTeX`**, que é o motor compilador validado deste modelo (ou `latexmk`, já configurado para `pdfLaTeX` via `.latexmkrc`).
+#### Como abrir este projeto no Oleafly
+
+Você pode abrir o modelo no Oleafly de três formas:
+
+1. **Via arquivo `.zip` (sem precisar usar Git):**
+   - Baixe o repositório no GitHub em **Code > Download ZIP** (ou baixe o código-fonte da [última release](https://github.com/LucasReSilva/modelo-tcc-depro-ufs/releases/latest)).
+   - No Oleafly, acesse **New project → Import a project → Existing project (`.zip`)** e selecione o arquivo baixado.
+2. **Via `git clone` e pasta local (ou CLI do Oleafly):**
+   ```sh
+   git clone https://github.com/LucasReSilva/modelo-tcc-depro-ufs.git
+   oleafly open modelo-tcc-depro-ufs
+   ```
+   *(Se preferir usar apenas a interface gráfica, clique em **Open folder…** na biblioteca inicial do Oleafly e selecione a pasta `modelo-tcc-depro-ufs`.)*
+3. **Via integração com o GitHub:**
+   - Conecte sua conta em **Settings → Integrations → GitHub**.
+   - Acesse **New project → Import a project → GitHub** e selecione este repositório.
+
+#### Configuração e edição no Oleafly
+
+1. **Motor de compilação (`pdfLaTeX` / `latexmk`):** ao importar um projeto, o Oleafly usa o compilador **Tectonic** por padrão, a menos que **Settings → Engines → LaTeX** esteja configurado para **`latexmk`**. Como este modelo depende de `abntex2`/`abntex2cite` e foi validado com **`pdfLaTeX`**, certifique-se de ter uma distribuição LaTeX instalada (TeX Live, MiKTeX ou TinyTeX, com os pacotes `abntex2`, `abntex2cite`, `babel`, `mathptmx`, `tikz`, `microtype`, `booktabs`, `tabularx`, `csvsimple`, `listings`, `xcolor`, `amsmath`, `amssymb`, `etoolbox` e `iftex`; além de `hyperxmp`, `xurl` e `pdfpages` opcionais) e configure o motor do projeto para **`latexmk`** / **`pdfLaTeX`** (já configurado via `.latexmkrc`).
+2. Defina `tcc-depro-ufs.tex` como documento principal.
 3. Edite seus dados pessoais no preâmbulo de `tcc-depro-ufs.tex` (`\nomealuno`, `\titulotrabalho`, `\nomeorientador`, `\nomecoorientador`, etc.).
 4. Escreva o conteúdo nas pastas `pre-textuais/`, `capitulos/` e `pos-textuais/` e adicione suas fontes em `referencias.bib`.
 5. Antes da entrega final, substitua ou remova o anexo de instruções em `pos-textuais/anexos.tex`.
@@ -77,11 +105,14 @@ No Linux/macOS/WSL, também é possível usar `make` e `make clean`.
 
 ### Opção 3: Compilação online no Overleaf
 
-1. Baixe este repositório como `.zip` (**Code > Download ZIP**) ou importe-o diretamente do GitHub para o Overleaf.
-2. No menu **Menu > Settings**, defina:
+[![Abrir no Overleaf](https://img.shields.io/badge/Overleaf-Abrir%20%C3%BAltima%20vers%C3%A3o%20da%20main-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2FLucasReSilva%2Fmodelo-tcc-depro-ufs%2Farchive%2Frefs%2Fheads%2Fmain.zip&engine=pdflatex&main_document=tcc-depro-ufs.tex)
+
+1. Clique no botão acima ou acesse o **[link direto para abrir a última versão da `main` no Overleaf](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2FLucasReSilva%2Fmodelo-tcc-depro-ufs%2Farchive%2Frefs%2Fheads%2Fmain.zip&engine=pdflatex&main_document=tcc-depro-ufs.tex)** — o Overleaf criará automaticamente uma cópia do repositório já configurada com **`pdfLaTeX`** e **`tcc-depro-ufs.tex`** como arquivo principal. *(Observação: a importação via link cria uma cópia independente no momento da abertura, sem sincronização bidirecional automática com o GitHub.)*
+2. Como alternativa manual, baixe o repositório como `.zip` (**Code > Download ZIP**) e envie no Overleaf (**New Project > Upload Project**), conferindo em **Menu > Settings**:
    - **Compiler:** `pdfLaTeX`
    - **Main document:** `tcc-depro-ufs.tex`
 3. Edite os arquivos e compile normalmente.
+
 
 ## Dicas rápidas de edição
 
@@ -91,7 +122,7 @@ No Linux/macOS/WSL, também é possível usar `make` e `make clean`.
 - **Quadros vs. Tabelas:** use `\begin{quadro} ... \end{quadro}` para informações textuais/qualitativas e `\begin{table} ... \end{table}` para dados numéricos. Em ambos, utilize `\caption{...}`, `\label{...}` e `\fonte{...}`.
 - **Tabelas a partir de CSV:** use `\csvreader` (pacote `csvsimple`), conforme exemplificado em `capitulos/resultados-e-discussao.tex`. O arquivo CSV em `dados/` já deve estar formatado e pronto para exibição (casas decimais, separador `;` e eventuais totais).
 - **CSV no Excel:** ao exportar planilhas em português no Excel, salve como **CSV UTF-8** (com separador `;` e a primeira linha reservada ao cabeçalho).
-- **Códigos-fonte (`listings`):** use `\begin{lstlisting} ... \end{lstlisting}` para inserir códigos-fonte compatíveis com `pdfLaTeX`, com quebra de página automática, suporte a acentos UTF-8 em português e linguagens prontas (`Python`, `R`, `SQL`, `Matlab` e `VBA`). Indique a origem do trecho com `\fontecodigo{...}` e, para gerar a lista correspondente, ative (descomente) a inclusão de `pre-textuais/lista-de-codigos.tex` em `tcc-depro-ufs.tex`.
+- **Códigos-fonte (`listings`):** use `\begin{lstlisting} ... \end{lstlisting}` para código inline ou `\lstinputlisting{codigos/...}` para importar arquivos separados (como exemplificado em `pos-textuais/anexos.tex` com `codigos/exemplo-eficiencia.py`), com compatibilidade `pdfLaTeX`, quebra de página automática, acentos UTF-8 em português e linguagens prontas (`Python`, `R`, `SQL`, `Matlab` e `VBA`). Indique a origem do trecho com `\fontecodigo{...}`; caso não utilize códigos-fonte no trabalho final, lembre-se de comentar `pre-textuais/lista-de-codigos.tex` em `tcc-depro-ufs.tex`.
 - **Citações ABNT:** use `\cite{chave}` para citações entre parênteses e `\citeonline{chave}` para citações integradas ao texto.
 - **Anexo de instruções e listas opcionais:** antes da entrega final, lembre-se de comentar ou substituir `pos-textuais/anexos.tex` e de comentar em `tcc-depro-ufs.tex` as listas opcionais não utilizadas (figuras, quadros, tabelas, códigos, siglas ou símbolos).
 
@@ -120,6 +151,11 @@ O arquivo institucional de origem (`Modelo DEPRO 003 - Trabalho de Conclusao de 
 - **Citações e referências (`abntex2cite`):** a bibliografia utiliza `abntex2cite` (padrão BibTeX autor-data em caixa alta entre parênteses, adotado pela praticidade e compatibilidade imediata com `pdfLaTeX`). Caso a banca ou a BICEN exijam estritamente a grafia `(Sobrenome, ano)` introduzida pela **ABNT NBR 10520:2023**, recomenda-se migrar a gestão bibliográfica para `biblatex-abnt` + `biber`.
 - **Acessibilidade no PDF:** os recursos aplicados cobrem metadados básicos e navegação (`pdflang`, `DisplayDocTitle`, `alt={...}`, `glyphtounicode`, `hyperxmp` opcional e marcadores), **sem equivaler a conformidade PDF/UA com *tagging* estrutural completo**, devido a limitações atuais do conjunto `abnTeX2`/`memoir`.
 
-## Licença
+## Como citar, comunidade e licenças
 
-O código LaTeX e os scripts de automação deste repositório são distribuídos sob a licença MIT (consulte [`LICENSE`](LICENSE)). Os logotipos da UFS e do DEPRO em `figuras/` pertencem às respectivas instituições e são mantidos apenas para identificação acadêmica nos trabalhos do curso.
+- **Como citar:** caso utilize ou adapte este modelo em seu trabalho acadêmico ou pesquisa, consulte os metadados de citação em [`CITATION.cff`](CITATION.cff) (ou utilize o botão **Cite this repository** no GitHub).
+- **Histórico de alterações:** veja [`CHANGELOG.md`](CHANGELOG.md).
+- **Contribuições e conduta:** consulte [`CONTRIBUTING.md`](CONTRIBUTING.md) e o [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+- **Segurança:** para relatar vulnerabilidades, siga as orientações em [`SECURITY.md`](SECURITY.md).
+- **Licença:** o código LaTeX e os scripts de automação deste repositório são distribuídos sob a licença MIT (consulte [`LICENSE`](LICENSE)). Os logotipos da UFS e do DEPRO em `figuras/` pertencem às respectivas instituições e são mantidos apenas para identificação acadêmica nos trabalhos do curso; detalhes adicionais sobre pacotes LaTeX e dependências de terceiros constam em [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
+

@@ -1,5 +1,5 @@
 % Anexos contêm documentos não elaborados pelo autor.
-% IMPORTANTE: substitua ou remova este anexo de instruções antes da entrega final do TCC.
+% IMPORTANTE: substitua ou remova estes anexos de instruções/exemplo antes da entrega final do TCC.
 % Caso deseje página divisória própria, descomente \partanexos.
 \begin{anexosenv}
   % \partanexos
@@ -7,10 +7,52 @@
 
   Edite os comandos de identificação no preâmbulo de \texttt{tcc-depro-ufs.tex} (nome do aluno, título, subtítulo opcional, orientador, coorientador opcional, cidade e ano). Escreva cada capítulo em um arquivo na pasta \texttt{capitulos/} e inclua-o após \texttt{\textbackslash textual}; os títulos de \texttt{\textbackslash chapter} e \texttt{\textbackslash section} são numerados e incluídos no sumário automaticamente.
 
-  Para inserir figuras e tabelas, utilize os ambientes \texttt{figure} e \texttt{table}, informando legenda, rótulo e fonte com \texttt{\textbackslash caption}, \texttt{\textbackslash label} e \texttt{\textbackslash fonte}. Para quadros, utilize o ambiente \texttt{quadro}; a lista de quadros é gerada automaticamente e separada das listas de figuras e tabelas. Para códigos-fonte, utilize o ambiente \texttt{lstlisting} (bloco \texttt{\textbackslash begin\{lstlisting\}} e \texttt{\textbackslash end\{lstlisting\}}) seguido de \texttt{\textbackslash fontecodigo} para indicar a fonte; caso deseje exibir a lista de códigos, ative \path{pre-textuais/lista-de-codigos.tex} em \path{tcc-depro-ufs.tex}.
+  Para inserir figuras e tabelas, utilize os ambientes \texttt{figure} e \texttt{table}, informando legenda, rótulo e fonte com \texttt{\textbackslash caption}, \texttt{\textbackslash label} e \texttt{\textbackslash fonte}. Para quadros, utilize o ambiente \texttt{quadro}; a lista de quadros é gerada automaticamente e separada das listas de figuras e tabelas. Para códigos-fonte, utilize o ambiente \texttt{lstlisting} (bloco \texttt{\textbackslash begin\{lstlisting\}} e \texttt{\textbackslash end\{lstlisting\}}) ou importe arquivos externos com \texttt{\textbackslash lstinputlisting} (conforme demonstrado no Anexo~B com \path{codigos/exemplo-eficiencia.py}), seguido de \texttt{\textbackslash fontecodigo} para indicar a fonte; caso o TCC não inclua códigos-fonte, comente \path{pre-textuais/lista-de-codigos.tex} em \path{tcc-depro-ufs.tex}.
 
-  Acrescente as entradas bibliográficas no arquivo \texttt{referencias.bib} e cite-as no texto com \texttt{\textbackslash cite} (citação entre parênteses) ou \texttt{\textbackslash citeonline} (citação integrada à frase). Para editar e compilar localmente, recomenda-se abrir a pasta do projeto no \textbf{Oleafly} (\url{https://github.com/Oleafly/Oleafly}) com \texttt{tcc-depro-ufs.tex} como documento principal, ou compilar via \texttt{latexmk}/\texttt{pdflatex} até que sumário, listas e referências cruzadas estejam atualizados.
+  Acrescente as entradas bibliográficas no arquivo \texttt{referencias.bib} e cite-as no texto com \texttt{\textbackslash cite} (citação entre parênteses) ou \texttt{\textbackslash citeonline} (citação integrada à frase). Para editar e compilar localmente, recomenda-se abrir a pasta do projeto no \textbf{Oleafly} (\url{https://oleafly.com/}) com \texttt{tcc-depro-ufs.tex} como documento principal, ou compilar via \texttt{latexmk}/\texttt{pdflatex} até que sumário, listas e referências cruzadas estejam atualizados.
 
   Antes da versão definitiva do TCC, substitua o conteúdo de \path{pos-textuais/anexos.tex} por eventuais anexos ou comente a chamada deste arquivo em \path{tcc-depro-ufs.tex}.
 
+  \chapter{Exemplo de código-fonte importado de arquivo externo}
+
+  Os anexos reúnem documentos ou códigos de referência não elaborados pelo autor (para códigos autorais, utilize os apêndices). O Código~\ref{cod:exemplo-python} demonstra como importar um arquivo de código-fonte separado (armazenado em \path{codigos/exemplo-eficiencia.py}) utilizando o comando \texttt{\textbackslash lstinputlisting} do pacote \texttt{listings}.
+
+  \lstinputlisting[
+    language=Python,
+    caption={Cálculo de indicadores operacionais a partir de arquivo externo},
+    label={cod:exemplo-python}
+  ]{codigos/exemplo-eficiencia.py}
+  \fontecodigo{Script ilustrativo de referência (exemplo do modelo)}
+
+  % --------------------------------------------------------------------------
+  % Dicas adicionais para inserção de códigos-fonte (pacote listings)
+  % Linguagens pré-configuradas: Python, R, SQL, Matlab e VBA.
+  % Acentos UTF-8 em português são suportados diretamente nos comentários e
+  % strings. Caso não utilize códigos-fonte no TCC definitivo, lembre-se de
+  % comentar \input{pre-textuais/lista-de-codigos} em tcc-depro-ufs.tex.
+  %
+  % 1) Para importar apenas um trecho de um arquivo externo, use firstline/lastline:
+  % \lstinputlisting[
+  %   language=Python,
+  %   firstline=4,
+  %   lastline=9,
+  %   caption={Função de cálculo de eficiência operacional},
+  %   label={cod:trecho-python}
+  % ]{codigos/exemplo-eficiencia.py}
+  % \fontecodigo{Script ilustrativo de referência}
+  %
+  % 2) Para escrever o código diretamente no arquivo .tex:
+  % \begin{lstlisting}[
+  %   language=VBA,
+  %   caption={Rotina de otimização no Excel Solver via macro VBA},
+  %   label={cod:exemplo-vba}
+  % ]
+  % ' Comentário em VBA
+  % Sub OtimizarProducao()
+  %     SolverOk SetCell:="$D$10", MaxMinVal:=1, ByChange:="$B$2:$B$5"
+  %     SolverSolve UserFinish:=True
+  % End Sub
+  % \end{lstlisting}
+  % \fontecodigo{Script ilustrativo de referência}
+  % --------------------------------------------------------------------------
 \end{anexosenv}

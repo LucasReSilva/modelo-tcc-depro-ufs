@@ -7,6 +7,7 @@
 *.svg text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
+*.py text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
 .latexmkrc text eol=lf
