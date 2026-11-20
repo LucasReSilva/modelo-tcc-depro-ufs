@@ -46,15 +46,15 @@ jobs:
           docker run --rm \
             --volume "$GITHUB_WORKSPACE/artifact:/data" \
             verapdf/cli:v1.30.4 \
-            -f 2u --format text /data/tcc-depro-ufs.pdf \
-            | tee verapdf-report.txt
+            -f 2u /data/tcc-depro-ufs.pdf \
+            | tee verapdf-report.xml
 
       - name: Publicar relatório de validação
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: relatorio-validacao-pdfa-2u
-          path: verapdf-report.txt
+          path: verapdf-report.xml
           if-no-files-found: ignore
 
   publish-pdf:
