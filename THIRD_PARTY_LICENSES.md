@@ -23,11 +23,12 @@ O modelo não redistribui binários ou pacotes do TeX no repositório; eles são
 | `csvsimple` | Importação automática de tabelas a partir de arquivos CSV (`dados/`) | LPPL 1.3c |
 | `listings` | Listagens de código-fonte compatíveis com `pdfLaTeX` (sem `--shell-escape`) | LPPL 1.3c |
 | `etoolbox` | Utilitários de programação de macros no preâmbulo | LPPL 1.3c |
-| `hyperxmp`, `xurl`, `pdfpages` (opcionais) | Metadados XMP, quebra de URLs longas e inclusão da ficha catalográfica | LPPL 1.3c |
+| [`pdfx`](https://ctan.org/pkg/pdfx) | Geração de PDF/A-2u e metadados XMP com pdfLaTeX | LPPL 1.3c |
+| `xurl`, `pdfpages` (opcionais) | Quebra de URLs longas e inclusão da ficha catalográfica | LPPL 1.3c |
 
 ## Automação e Integração Contínua (GitHub Actions)
 
-O fluxo automatizado em [`.github/workflows/build.yml`](.github/workflows/build.yml) utiliza as seguintes ações de código aberto:
+O fluxo automatizado em [`.github/workflows/compilar-e-validar-pdf.yml`](.github/workflows/compilar-e-validar-pdf.yml) utiliza as seguintes ações de código aberto:
 
 | Ação | Finalidade | Licença |
 |---|---|---|

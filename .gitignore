@@ -28,6 +28,7 @@
 *.toc
 *.vrb
 *.xdv
+*.xmpi
 
 # PDFs gerados na compilação (mantém PDFs usados como figuras em figuras/)
 /*.pdf

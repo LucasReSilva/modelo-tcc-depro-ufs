@@ -15,7 +15,8 @@ Antes de iniciar mudanças extensas, abra uma *issue* para alinharmos a abordage
 
 | Ferramenta | Versão / Observação | Notas |
 | --- | --- | --- |
-| Distribuição LaTeX | [TeX Live](https://www.tug.org/texlive/), [MiKTeX](https://miktex.org/) ou [TinyTeX](https://yihui.org/tinytex/) | Deve incluir `pdflatex`, `bibtex` e os pacotes `abntex2`, `abntex2cite`, `babel`, `mathptmx`, `tikz`, `microtype`, `booktabs`, `tabularx`, `csvsimple`, `listings`, `xcolor`, `amsmath`, `amssymb`, `etoolbox` e `iftex` (`hyperxmp`, `xurl` e `pdfpages` opcionais). |
+| Distribuição LaTeX | [TeX Live](https://www.tug.org/texlive/), [MiKTeX](https://miktex.org/) ou [TinyTeX](https://yihui.org/tinytex/) | Deve incluir `pdflatex`, `bibtex` e os pacotes `abntex2`, `abntex2cite`, `babel`, `mathptmx`, `tikz`, `microtype`, `booktabs`, `tabularx`, `csvsimple`, `listings`, `xcolor`, `pdfx`, `amsmath`, `amssymb`, `etoolbox` e `iftex` (`xurl` e `pdfpages` opcionais). |
+| Validação PDF/A | [veraPDF](https://verapdf.org/software/) | Necessário para `mise run validate`, que verifica o PDF gerado com o perfil PDF/A-2u da ISO 19005-2:2011. |
 | `latexmk` | Incluído no TeX Live / MiKTeX | No Windows com MiKTeX, exige **Strawberry Perl** instalado; caso contrário, use `pdflatex` + `bibtex`. |
 | [Oleafly](https://oleafly.com/) *(opcional)* | Última versão estável | IDE local recomendada; permite compilar com `latexmk` e validar o projeto via `oleafly check`. |
 | [Git](https://git-scm.com/) | Qualquer versão recente | Controle de versão e envio de *Pull Requests*. |
@@ -59,14 +60,14 @@ capitulos/                   # Seções textuais e exemplos (equações, figuras
 pos-textuais/                # Referências, apêndices e anexo de instruções
 .latexmkrc                   # Configuração padrão do latexmk (pdfLaTeX + BibTeX + SyncTeX)
 Makefile                     # Atalhos de compilação e limpeza (all, manual, clean, distclean)
-.github/workflows/build.yml  # Pipeline de compilação automática no GitHub Actions
+.github/workflows/compilar-e-validar-pdf.yml  # CI de compilação, validação e publicação do PDF
 ```
 
 ## Verificações antes de enviar
 
 Toda alteração em arquivos `.tex`, `.bib`, `.csv` ou scripts de build deve ser validada compilando `tcc-depro-ufs.tex` do zero (após `latexmk -C` ou `make distclean`) e conferindo:
 
-1. **Compilação limpa em `pdfLaTeX` sem `--shell-escape`:** o modelo deve compilar sem erros fatais no CI (`.github/workflows/build.yml`) e no Overleaf.
+1. **Compilação limpa em `pdfLaTeX` sem `--shell-escape`:** o modelo deve compilar sem erros fatais no CI (`.github/workflows/compilar-e-validar-pdf.yml`) e no Overleaf.
 2. **Sumário e listas:** verificar se o sumário aparece após todas as listas opcionais (figuras, quadros, tabelas, códigos, siglas e símbolos) e se a numeração de entradas e páginas bate com o PDF final.
 3. **Paginação ABNT:** confirmar contagem sequencial oculta a partir da folha de rosto e numeração arábica visível no canto superior direito a partir da Introdução.
 4. **Citações e referências:** assegurar que `bibtex tcc-depro-ufs` executa sem chaves indefinidas (`Citation ... undefined`) ou referências quebradas.

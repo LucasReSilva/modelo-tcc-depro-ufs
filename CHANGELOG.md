@@ -7,6 +7,8 @@ e este projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/
 
 ## [Não lançado]
 
+## [1.1.0] - 2026-11-20
+
 ### Adicionado
 - Exemplo ativo de código-fonte nos anexos ([`pos-textuais/anexos.tex`](pos-textuais/anexos.tex)) referenciando o arquivo externo [`codigos/exemplo-eficiencia.py`](codigos/exemplo-eficiencia.py) via `\lstinputlisting`, com `pre-textuais/lista-de-codigos.tex` habilitado em [`tcc-depro-ufs.tex`](tcc-depro-ufs.tex).
 - Link direto e selo no [`README.md`](README.md) para abrir a última versão da branch `main` diretamente no Overleaf (com `pdfLaTeX` e `tcc-depro-ufs.tex` pré-selecionados).
@@ -21,7 +23,7 @@ e este projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/
 - Ambiente flutuante `quadro` e `Lista de quadros` própria, separados de `table` (`booktabs`).
 - Suporte nativo a códigos-fonte via `listings` (compatível com `pdfLaTeX` sem `--shell-escape`, acentos UTF-8 em português, estilos pré-configurados para `Python`, `R`, `SQL`, `Matlab` e `VBA`, macro `\fontecodigo` e `pre-textuais/lista-de-codigos.tex` opcional).
 - Importação de tabelas externas via CSV (`csvsimple`), fluxograma metodológico nativo em TikZ (`capitulos/procedimentos-metodologicos.tex`) e suporte opcional à ficha catalográfica (`pdfpages`).
-- Automação de compilação com `.latexmkrc`, `Makefile` e workflow de integração contínua no GitHub Actions (`.github/workflows/build.yml`).
+- Automação de compilação com `.latexmkrc`, `Makefile` e workflow de integração contínua no GitHub Actions (`.github/workflows/compilar-e-validar-pdf.yml`).
 
 ### Corrigido e aprimorado em relação ao modelo DOCX original
 - Posicionamento do Sumário como último elemento pré-textual (ABNT NBR 14724).
@@ -29,5 +31,6 @@ e este projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/
 - Folha de rosto limpa e nomenclatura oficial para `REFERÊNCIAS` e `LISTA DE ABREVIATURAS E SIGLAS` (ordenada alfabeticamente).
 - Correção da equação de exemplo e unificação dos símbolos ($A = \pi r^2$), formatação de alíneas (ABNT NBR 6024) e metadados básicos de acessibilidade no PDF.
 
-[Não lançado]: https://github.com/LucasReSilva/modelo-tcc-depro-ufs/compare/v1.0.0...HEAD
+[Não lançado]: https://github.com/LucasReSilva/modelo-tcc-depro-ufs/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/LucasReSilva/modelo-tcc-depro-ufs/releases/tag/v1.1.0
 [1.0.0]: https://github.com/LucasReSilva/modelo-tcc-depro-ufs/releases/tag/v1.0.0

@@ -1,6 +1,6 @@
 MAIN = tcc-depro-ufs
 
-.PHONY: all manual clean distclean
+.PHONY: all manual validate clean distclean
 
 all:
 	latexmk -pdf $(MAIN).tex
@@ -10,6 +10,9 @@ manual:
 	bibtex $(MAIN)
 	pdflatex -interaction=nonstopmode $(MAIN).tex
 	pdflatex -interaction=nonstopmode $(MAIN).tex
+
+validate: all
+	verapdf -f 2u $(MAIN).pdf
 
 clean:
 	latexmk -c $(MAIN).tex

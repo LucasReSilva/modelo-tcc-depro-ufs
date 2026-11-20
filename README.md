@@ -5,7 +5,7 @@
 # Modelo LaTeX de TCC — DEPRO/UFS (`modelo-tcc-depro-ufs`)
 
 <p align="center">
-  <a href="https://github.com/LucasReSilva/modelo-tcc-depro-ufs/actions/workflows/build.yml"><img src="https://github.com/LucasReSilva/modelo-tcc-depro-ufs/actions/workflows/build.yml/badge.svg" alt="Compilar PDF (LaTeX)"></a>
+  <a href="https://github.com/LucasReSilva/modelo-tcc-depro-ufs/actions/workflows/compilar-e-validar-pdf.yml"><img src="https://github.com/LucasReSilva/modelo-tcc-depro-ufs/actions/workflows/compilar-e-validar-pdf.yml/badge.svg" alt="Compilar PDF (LaTeX)"></a>
   <a href="https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2FLucasReSilva%2Fmodelo-tcc-depro-ufs%2Farchive%2Frefs%2Fheads%2Fmain.zip&engine=pdflatex&main_document=tcc-depro-ufs.tex"><img src="https://img.shields.io/badge/Overleaf-Abrir%20no%20Overleaf-47A141?logo=overleaf&logoColor=white" alt="Abrir no Overleaf"></a>
   <a href="https://github.com/abntex/abntex2"><img src="https://img.shields.io/badge/LaTeX-abnTeX2-008080?logo=latex&logoColor=white" alt="LaTeX abnTeX2"></a>
   <img src="https://img.shields.io/badge/ABNT-NBR%2014724%20%7C%2010520%20%7C%206023-1D4ED8" alt="Normas ABNT">
@@ -26,6 +26,7 @@ Modelo não oficial em LaTeX (`abnTeX2`) para Trabalhos de Conclusão de Curso (
 - **Códigos-fonte com `listings`:** suporte nativo compatível com `pdfLaTeX`, quebra de página automática, acentos UTF-8 em português, linguagens pré-configuradas (`Python`, `R`, `SQL`, `Matlab`, `VBA`) e lista de códigos opcional.
 - **Fluxograma editável em TikZ:** diagrama metodológico em `capitulos/procedimentos-metodologicos.tex` gerado diretamente via código vetorial.
 - **Compilação automatizada:** pronto para compilação local com **[Oleafly](https://oleafly.com/)** (recomendado), linha de comando (`latexmk` / `pdflatex` + `bibtex`), uso online no **Overleaf** (com abertura direta em 1 clique) e verificação contínua via GitHub Actions.
+- **PDF para arquivamento:** geração configurada para **PDF/A-2u**, perfil de preservação de longo prazo com mapeamento Unicode para todo o texto, definido pela especificação técnica **[ISO 19005-2:2011](https://www.iso.org/standard/50655.html)**. Após a compilação, o GitHub Actions executa veraPDF e publica o relatório em paralelo à publicação do artefato PDF; uma não conformidade não bloqueia a entrega.
 
 ## Estrutura do projeto
 
@@ -41,7 +42,7 @@ modelo-tcc-depro-ufs/
 ├── pos-textuais/                # Referências, apêndices e anexos
 ├── .latexmkrc                   # Configuração do latexmk
 ├── Makefile                     # Atalhos de compilação e limpeza
-├── .github/workflows/build.yml  # Compilação automática no GitHub Actions
+├── .github/workflows/compilar-e-validar-pdf.yml  # CI: compilar, validar e publicar o PDF
 ├── CHANGELOG.md                 # Histórico de versões do modelo
 ├── CITATION.cff                 # Metadados de citação acadêmica (CFF 1.2.0)
 ├── CODE_OF_CONDUCT.md           # Código de conduta da comunidade
@@ -76,7 +77,7 @@ Você pode abrir o modelo no Oleafly de três formas:
 
 #### Configuração e edição no Oleafly
 
-1. **Motor de compilação (`pdfLaTeX` / `latexmk`):** ao importar um projeto, o Oleafly usa o compilador **Tectonic** por padrão, a menos que **Settings → Engines → LaTeX** esteja configurado para **`latexmk`**. Como este modelo depende de `abntex2`/`abntex2cite` e foi validado com **`pdfLaTeX`**, certifique-se de ter uma distribuição LaTeX instalada (TeX Live, MiKTeX ou TinyTeX, com os pacotes `abntex2`, `abntex2cite`, `babel`, `mathptmx`, `tikz`, `microtype`, `booktabs`, `tabularx`, `csvsimple`, `listings`, `xcolor`, `amsmath`, `amssymb`, `etoolbox` e `iftex`; além de `hyperxmp`, `xurl` e `pdfpages` opcionais) e configure o motor do projeto para **`latexmk`** / **`pdfLaTeX`** (já configurado via `.latexmkrc`).
+1. **Motor de compilação (`pdfLaTeX` / `latexmk`):** ao importar um projeto, o Oleafly usa o compilador **Tectonic** por padrão, a menos que **Settings → Engines → LaTeX** esteja configurado para **`latexmk`**. Como este modelo depende de `abntex2`/`abntex2cite` e `pdfx`, certifique-se de ter uma distribuição LaTeX instalada (TeX Live, MiKTeX ou TinyTeX, incluindo `pdfx`) e configure o motor para **`latexmk`** / **`pdfLaTeX`** (definido em `.latexmkrc`). Para validar o perfil PDF/A localmente, instale [veraPDF](https://verapdf.org/software/).
 2. Defina `tcc-depro-ufs.tex` como documento principal.
 3. Edite seus dados pessoais no preâmbulo de `tcc-depro-ufs.tex` (`\nomealuno`, `\titulotrabalho`, `\nomeorientador`, `\nomecoorientador`, etc.).
 4. Escreva o conteúdo nas pastas `pre-textuais/`, `capitulos/` e `pos-textuais/` e adicione suas fontes em `referencias.bib`.
@@ -91,6 +92,14 @@ Com TeX Live ou MiKTeX instalados, compile diretamente pelo terminal usando **`p
 ```sh
 latexmk -pdf tcc-depro-ufs.tex
 ```
+
+Para compilar e verificar a conformidade **PDF/A-2u** com veraPDF:
+
+```sh
+mise run validate
+```
+
+O comando requer `latexmk`, uma distribuição LaTeX com `pdfx` e o executável `verapdf` no `PATH`. A validação deve ser repetida depois de personalizar o trabalho ou inserir PDFs externos (por exemplo, a ficha catalográfica). Ao usar o projeto como base para um TCC, atualize em `tcc-depro-ufs.xmpdata` o título, autoria, colaboradores, idioma, assunto, palavras-chave e direitos para refletirem o documento final.
 
 Ou manualmente na sequência tradicional (`pdflatex` + `bibtex`, sem necessidade de Perl):
 
@@ -149,7 +158,8 @@ O arquivo institucional de origem (`Modelo DEPRO 003 - Trabalho de Conclusao de 
 
 - **Diretrizes institucionais:** embora este modelo incorpore correções estruturais alinhadas à **ABNT NBR 14724** e às demais normas aplicáveis, confirme sempre eventuais diretrizes específicas vigentes do DEPRO e do Sistema de Bibliotecas da UFS (BICEN) antes do depósito final.
 - **Citações e referências (`abntex2cite`):** a bibliografia utiliza `abntex2cite` (padrão BibTeX autor-data em caixa alta entre parênteses, adotado pela praticidade e compatibilidade imediata com `pdfLaTeX`). Caso a banca ou a BICEN exijam estritamente a grafia `(Sobrenome, ano)` introduzida pela **ABNT NBR 10520:2023**, recomenda-se migrar a gestão bibliográfica para `biblatex-abnt` + `biber`.
-- **Acessibilidade no PDF:** os recursos aplicados cobrem metadados básicos e navegação (`pdflang`, `DisplayDocTitle`, `alt={...}`, `glyphtounicode`, `hyperxmp` opcional e marcadores), **sem equivaler a conformidade PDF/UA com *tagging* estrutural completo**, devido a limitações atuais do conjunto `abnTeX2`/`memoir`.
+- **Acessibilidade no PDF:** os recursos aplicados cobrem metadados básicos e navegação (`pdflang`, `DisplayDocTitle`, `alt={...}`, `glyphtounicode`, XMP via `pdfx` e marcadores), **sem equivaler a conformidade PDF/UA com *tagging* estrutural completo**, devido a limitações atuais do conjunto `abnTeX2`/`memoir`.
+- **PDF/A:** a geração usa o perfil PDF/A-2u da **ISO 19005-2:2011**. Além dos requisitos visuais do perfil 2b, o nível 2u exige mapeamento Unicode para todo o texto; isso melhora a extração textual, mas não implica acessibilidade PDF/UA. A declaração de perfil no arquivo não substitui a validação com veraPDF do PDF final efetivamente entregue.
 
 ## Como citar, comunidade e licenças
 

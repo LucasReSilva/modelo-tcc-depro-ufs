@@ -18,7 +18,7 @@ Buscamos acusar o recebimento do relato em até **72 horas** e publicar uma corr
 Embora este repositório contenha primariamente código-fonte LaTeX e arquivos de compilação, interessam-nos especialmente relatos sobre:
 
 - **Execução arbitrária de comandos / primitivas inseguras em TeX:** qualquer alteração, macro ou dependência proposta no modelo que exija `--shell-escape`, invoque `\write18` ou execute comandos externos durante a compilação sem consentimento explícito. Por padrão de segurança e compatibilidade, o modelo deve compilar integralmente em `pdfLaTeX` sem `--shell-escape`.
-- **Segurança no fluxo de CI (GitHub Actions e `Makefile`):** permissões excessivas, exposição indevida de tokens, ações de terceiros não confiáveis ou possibilidade de injeção de comandos em [`.github/workflows/build.yml`](.github/workflows/build.yml) e [`Makefile`](Makefile).
+- **Segurança no fluxo de CI (GitHub Actions e `Makefile`):** permissões excessivas, exposição indevida de tokens, ações de terceiros não confiáveis ou possibilidade de injeção de comandos em [`.github/workflows/compilar-e-validar-pdf.yml`](.github/workflows/compilar-e-validar-pdf.yml) e [`Makefile`](Makefile).
 - **Integridade de ativos e links externos:** arquivos vetoriais/PDF malformados em `figuras/`, arquivos CSV em `dados/` ou links maliciosos/comprometidos na documentação.
 
 ## Limitações conhecidas (por design)

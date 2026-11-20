@@ -1,0 +1,23 @@
+[tools]
+make = "latest"
+perl = "latest"
+
+[tasks.build]
+description = "Compila o modelo PDF com latexmk e pdfLaTeX"
+run = "latexmk -pdf tcc-depro-ufs.tex"
+
+[tasks.manual]
+description = "Compila o modelo com pdfLaTeX e BibTeX, sem latexmk"
+run = "make manual"
+
+[tasks.validate]
+description = "Compila e valida o PDF no perfil PDF/A-2u com veraPDF"
+run = "make validate"
+
+[tasks.clean]
+description = "Remove arquivos auxiliares da compilacao"
+run = "make clean"
+
+[tasks.distclean]
+description = "Remove arquivos auxiliares e o PDF gerado"
+run = "make distclean"

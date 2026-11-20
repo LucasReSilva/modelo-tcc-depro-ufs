@@ -1,0 +1,75 @@
+name: Compilar e validar PDF (LaTeX)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Compilar PDF
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v7
+
+      - name: Compilar tcc-depro-ufs.tex
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: tcc-depro-ufs.tex
+          latexmk_use_lualatex: false
+
+      - name: Disponibilizar PDF para as etapas seguintes
+        uses: actions/upload-artifact@v6
+        with:
+          name: pdf-compilado-intermediario
+          path: tcc-depro-ufs.pdf
+          retention-days: 1
+
+  validate-pdfa:
+    name: Verificar conformidade PDF/A-2u (informativo)
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - name: Baixar PDF compilado
+        uses: actions/download-artifact@v7
+        with:
+          name: pdf-compilado-intermediario
+          path: artifact
+
+      - name: Validar com veraPDF
+        continue-on-error: true
+        shell: bash
+        run: |
+          docker run --rm \
+            --volume "$GITHUB_WORKSPACE/artifact:/data" \
+            ghcr.io/verapdf/cli:v1.31.212 \
+            -f 2u --format text /data/tcc-depro-ufs.pdf \
+            | tee verapdf-report.txt
+
+      - name: Publicar relatório de validação
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: relatorio-validacao-pdfa-2u
+          path: verapdf-report.txt
+          if-no-files-found: ignore
+
+  publish-pdf:
+    name: Publicar PDF compilado
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - name: Baixar PDF compilado
+        uses: actions/download-artifact@v7
+        with:
+          name: pdf-compilado-intermediario
+          path: artifact
+
+      - name: Publicar PDF como artefato
+        uses: actions/upload-artifact@v6
+        with:
+          name: pdf-tcc-depro-ufs
+          path: artifact/tcc-depro-ufs.pdf

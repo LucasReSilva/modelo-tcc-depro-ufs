@@ -1,0 +1,19 @@
+\Title{Modelo LaTeX de TCC — DEPRO/UFS}
+\Author{Lucas Silva}
+\Contributor{Contribuidores do projeto modelo-tcc-depro-ufs}
+\Language{pt-BR}
+\Language{en}
+\Subject{Modelo de Trabalho de Conclusão de Curso em Engenharia de Produção}
+\Keywords{TCC\sep Engenharia de Produção\sep UFS\sep ABNT\sep LaTeX}
+\Publisher{Projeto modelo-tcc-depro-ufs}
+\Coverage{Trabalhos de Conclusão de Curso do Departamento de Engenharia de Produção da Universidade Federal de Sergipe}
+\Date{2026-11-20}
+\PublicationType{manual}
+\Source{Modelo DEPRO 003 — Trabalho de Conclusão de Curso, documento institucional DOCX de 2021}
+\URLlink{https://github.com/LucasReSilva/modelo-tcc-depro-ufs}
+\Identifier{modelo-tcc-depro-ufs}
+\Copyright{Copyright 2026 Lucas Silva e contribuidores do projeto; licenciado sob MIT}
+\CopyrightURL{https://github.com/LucasReSilva/modelo-tcc-depro-ufs/blob/main/LICENSE}
+\Copyrighted{True}
+\Owner{Lucas Silva\sep Contribuidores do projeto modelo-tcc-depro-ufs}
+\Advisory{Modelo não oficial. Confirme as normas vigentes da ABNT, do DEPRO e da UFS antes do depósito final.}

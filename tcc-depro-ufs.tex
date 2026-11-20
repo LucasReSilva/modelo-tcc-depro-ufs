@@ -34,12 +34,13 @@
 \usepackage{array}
 \usepackage{csvsimple}
 \usepackage[table]{xcolor}
+% Gera PDF/A-2u segundo ISO 19005-2:2011. pdfx também carrega hyperref.
+\usepackage[a-2u]{pdfx}
 \usepackage{listings}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric}
 \usepackage{etoolbox}
 \usepackage[alf]{abntex2cite}
-\IfFileExists{hyperxmp.sty}{\usepackage{hyperxmp}}{}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{}
 \IfFileExists{pdfpages.sty}{\usepackage{pdfpages}}{}
 \providecommand{\tagpdfsetup}[1]{}
@@ -206,6 +207,7 @@
 \instituicao{Universidade Federal de Sergipe}
 \tipotrabalho{Trabalho de Conclusão de Curso}
 \preambulo{Trabalho de Conclusão do Curso de Graduação em Engenharia de Produção do Centro de Ciências Exatas e Tecnologia da Universidade Federal de Sergipe, como requisito parcial à obtenção do título de bacharel em Engenharia de Produção.}
+
 
 % Metadados, idioma, marcadores e aparência dos links no PDF (acessibilidade)
 \hypersetup{

@@ -10,8 +10,8 @@ authors:
 repository-code: "https://github.com/LucasReSilva/modelo-tcc-depro-ufs"
 url: "https://github.com/LucasReSilva/modelo-tcc-depro-ufs"
 license: MIT
-version: 1.0.0
-date-released: 2026-11-15
+version: 1.1.0
+date-released: 2026-11-20
 keywords:
   - latex
   - abntex2
