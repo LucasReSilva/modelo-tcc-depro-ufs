@@ -36,9 +36,11 @@
 \usepackage[table]{xcolor}
 % Gera PDF/A-2u segundo ISO 19005-2:2011. pdfx também carrega hyperref.
 \usepackage[a-2u]{pdfx}
-% Garante a flag /F exigida pelo PDF/A nas anotações de links do hyperref.
+% Os links internos precisam da flag /F exigida pela ISO 19005-2.
 \makeatletter
-\Hy@pdfatrue
+\def\Hy@StartlinkName#1#2{%
+  \pdfstartlink attr{/F 4 #1}goto name{#2}\relax
+}
 \makeatother
 \usepackage{listings}
 \usepackage{tikz}
