@@ -36,6 +36,11 @@
 \usepackage[table]{xcolor}
 % Gera PDF/A-2u segundo ISO 19005-2:2011. pdfx também carrega hyperref.
 \usepackage[a-2u]{pdfx}
+% As anotações de links precisam da flag /F exigida pela ISO 19005-2.
+\makeatletter
+\let\Hy@setpdfborder@pdfa\Hy@setpdfborder
+\def\Hy@setpdfborder{\Hy@setpdfborder@pdfa\space/F 4}
+\makeatother
 \usepackage{listings}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric}
