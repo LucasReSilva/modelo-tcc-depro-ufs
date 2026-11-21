@@ -207,8 +207,12 @@
 \newcommand{\anoentrega}{2026}
 \newcommand{\dataaprovacao}{[dia] de [mês] de \anoentrega}
 
-\titulo{\titulotrabalho\ifdefempty{\subtitulotrabalho}{}{: \subtitulotrabalho}}
-\autor{\nomealuno}
+% memoir redefine os comandos de dados de título e autor com implementações
+% incompatíveis com o tagging do PDF management. O abnTeX2 usa \thetitle e
+% \theauthor para imprimir esses dados; defini-los diretamente preserva essa
+% interface sem substituir os comandos semânticos do kernel LaTeX.
+\renewcommand{\thetitle}{\titulotrabalho\ifdefempty{\subtitulotrabalho}{}{: \subtitulotrabalho}}
+\renewcommand{\theauthor}{\nomealuno}
 \local{\cidade}
 \data{\anoentrega}
 \orientador{\nomeorientador}
