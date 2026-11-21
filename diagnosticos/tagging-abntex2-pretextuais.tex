@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{amsmath,amssymb,booktabs,tabularx,array}
 \usepackage{csvsimple}
+\usepackage{listings}
 \usepackage[table]{xcolor}
 \usepackage[alf]{abntex2cite}
 \usepackage{tikz}
@@ -18,6 +19,9 @@
 \newcommand{\quadroname}{Quadro}
 \newfloat[chapter]{quadro}{loq}{\quadroname}
 \tagpdfsetup{float/new=quadro}
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Lista de códigos}
+\newcommand{\fontecodigo}[1]{\par\nopagebreak\vspace{2pt}\noindent\textit{\fontename: #1}\par}
 \newcommand{\nomealuno}{Nome do aluno}
 \newcommand{\cidade}{São Cristóvão/SE}
 \newcommand{\anoentrega}{2026}
@@ -44,4 +48,7 @@ Este parágrafo verifica o texto corrido após os elementos pré-textuais.
 \input{capitulos/procedimentos-metodologicos}
 \input{capitulos/resultados-e-discussao}
 \input{capitulos/consideracoes-finais}
+\postextual
+\input{pos-textuais/apendices}
+\input{pos-textuais/anexos}
 \end{document}
