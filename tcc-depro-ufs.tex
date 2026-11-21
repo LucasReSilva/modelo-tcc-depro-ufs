@@ -61,9 +61,6 @@
 \apptocmd{\@makechapterhead}{\tagstructend}{}{}
 \pretocmd{\@makeschapterhead}{\tagstructbegin{tag=H1}}{}{}
 \apptocmd{\@makeschapterhead}{\tagstructend}{}{}
-% As regras do booktabs são elementos visuais, não conteúdo da tabela.
-\pretocmd{\@BTrule}{\tagmcbegin{artifact}}{}{}
-\apptocmd{\@BTrule}{\tagmcend}{}{}
 \makeatother
 
 % ---
