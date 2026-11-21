@@ -23,6 +23,13 @@
 \tagpdfsetup{float/new=quadro}
 \renewcommand{\lstlistingname}{Código}
 \renewcommand{\lstlistlistingname}{Lista de códigos}
+\lstset{
+  extendedchars=true,
+  literate={á}{{\'{a}}}1 {é}{{\'{e}}}1 {í}{{\'{\i}}}1 {ó}{{\'{o}}}1 {ú}{{\'{u}}}1
+    {Á}{{\'{A}}}1 {É}{{\'{E}}}1 {Í}{{\'{I}}}1 {Ó}{{\'{O}}}1 {Ú}{{\'{U}}}1
+    {à}{{\`{a}}}1 {À}{{\`{A}}}1 {â}{{\^{a}}}1 {ê}{{\^{e}}}1 {ô}{{\^{o}}}1
+    {ã}{{\~{a}}}1 {õ}{{\~{o}}}1 {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1
+}
 \newcommand{\fontecodigo}[1]{\par\nopagebreak\vspace{2pt}\noindent\textit{\fontename: #1}\par}
 \newcommand{\nomealuno}{Nome do aluno}
 \newcommand{\cidade}{São Cristóvão/SE}
