@@ -27,6 +27,7 @@ Modelo não oficial em LaTeX (`abnTeX2`) para Trabalhos de Conclusão de Curso (
 - **Fluxograma editável em TikZ:** diagrama metodológico em `capitulos/procedimentos-metodologicos.tex` gerado diretamente via código vetorial.
 - **Compilação automatizada:** pronto para compilação local com **[Oleafly](https://oleafly.com/)** (recomendado), linha de comando (`latexmk` / `pdflatex` + `bibtex`), uso online no **Overleaf** (com abertura direta em 1 clique) e verificação contínua via GitHub Actions.
 - **PDF para arquivamento:** geração configurada para **PDF/A-2u**, perfil de preservação de longo prazo com mapeamento Unicode para todo o texto, definido pela especificação técnica **[ISO 19005-2:2011](https://www.iso.org/standard/50655.html)**. Após a compilação, o GitHub Actions executa veraPDF e publica o relatório em paralelo à publicação do artefato PDF; uma não conformidade não bloqueia a entrega.
+- **Protótipo PDF/UA:** o ramo `feature/pdf-ua` habilita tagging estrutural experimental e produz relatórios informativos separados para PDF/A-2u e PDF/UA-1 no CI. A conformidade PDF/UA ainda não está declarada: a ordem de leitura, os elementos não textuais e a árvore de estrutura precisam de revisão automática e humana. O status e as pendências estão em [`docs/pdf-ua-roadmap.md`](docs/pdf-ua-roadmap.md).
 
 ## Estrutura do projeto
 

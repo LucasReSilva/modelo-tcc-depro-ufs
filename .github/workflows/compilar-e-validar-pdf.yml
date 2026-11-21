@@ -57,6 +57,35 @@ jobs:
           path: verapdf-report.xml
           if-no-files-found: ignore
 
+  validate-pdfua:
+    name: Verificar conformidade PDF/UA-1 (informativo)
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - name: Baixar PDF compilado
+        uses: actions/download-artifact@v7
+        with:
+          name: pdf-compilado-intermediario
+          path: artifact
+
+      - name: Validar com veraPDF
+        continue-on-error: true
+        shell: bash
+        run: |
+          docker run --rm \
+            --volume "$GITHUB_WORKSPACE/artifact:/data" \
+            verapdf/cli:v1.30.4 \
+            -f ua1 /data/tcc-depro-ufs.pdf \
+            | tee verapdf-pdfua-report.xml
+
+      - name: Publicar relatório de validação
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: relatorio-validacao-pdf-ua-1
+          path: verapdf-pdfua-report.xml
+          if-no-files-found: ignore
+
   publish-pdf:
     name: Publicar PDF compilado
     runs-on: ubuntu-24.04
