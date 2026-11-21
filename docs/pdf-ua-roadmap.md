@@ -2,14 +2,14 @@
 
 ## Situação atual
 
-O modelo configura PDF/A-2u, idioma e metadados e fornece texto alternativo às marcas institucionais. O fluxograma tem uma descrição em texto adjacente, ainda não associada como alternativa ao objeto gráfico. Esses recursos melhoram extração e navegação, mas não criam uma árvore estrutural marcada para o conteúdo; portanto, não constituem conformidade PDF/UA.
+O ramo `feature/pdf-ua` ativa o PDF management e o tagging automático junto com PDF/A-2u e PDF/UA-1. A compilação avançou após adaptações aos dados de título, ao float `quadro` e ao exemplo `listings`, mas ainda falha ao encerrar o documento com erro de contagem dos hooks de parágrafo do `tagpdf`. Portanto, este ramo é um protótipo e não gera atualmente um PDF final nem demonstra conformidade PDF/UA.
 
-Há também um placeholder em `tcc-depro-ufs.tex`: `\providecommand{\tagpdfsetup}[1]{}`. As configurações de cabeçalho das tabelas que chamam `\tagpdfsetup` são hoje inertes.
+Os testes no TeX Live 2026 indicaram `Package tagpdf Error: The number of automatic begin (...) and end (...) text para hooks differ` ao final do documento. Repetir com LuaLaTeX manteve a falha; desativar a marcação automática de parágrafos também não resolveu. A causa deve ser isolada em um exemplo mínimo antes de tentar novos ajustes na classe. O projeto Tagged PDF lista `abntex2` e `memoir` como incompatíveis no estado consultado em 2026-11-20.
 
 ## Bloqueios identificados
 
-- `pdfx` está classificado pelo projeto de marcação do LaTeX como incompatível com o PDF management. A declaração de perfil e metadados precisará migrar para `\DocumentMetadata` e interfaces gerenciadas.
-- `abntex2` estende `memoir`; ambos estão classificados atualmente como incompatíveis com tagging automático. É necessário testar e adaptar a classe e seus componentes antes de ativar a marcação no documento completo.
+- `pdfx` está classificado pelo projeto de marcação do LaTeX como incompatível com o PDF management. O protótipo já o substituiu por `\DocumentMetadata` e removeu o placeholder de `\tagpdfsetup`.
+- `abntex2` estende `memoir`; ambos estão classificados como incompatíveis com tagging automático. O erro de contagem dos hooks de parágrafo confirma que a incompatibilidade afeta o documento completo e ainda não foi resolvida.
 - `listings` é parcialmente compatível; o código-fonte e sua lista precisam ser conferidos na árvore de estrutura e na ordem de leitura.
 - `tikz` é parcialmente compatível; cada diagrama precisa de texto alternativo significativo. Figuras, tabelas/quadros, matemática, listas, sumário e elementos pré-textuais também precisam de revisão semântica.
 - A validação automática cobre requisitos verificáveis por máquina. A ordem de leitura, a utilidade dos textos alternativos e a leitura de fórmulas ainda exigem inspeção humana com tecnologia assistiva.
@@ -22,10 +22,11 @@ O protótipo deve usar a implementação atual do LaTeX Tagged PDF, habilitada a
 
 ## Etapas de implementação
 
-1. Construir um documento mínimo com `abntex2` e a configuração de metadados/estrutura compatível com PDF/A-2u e PDF/UA-1; verificar a classe, títulos, sumário, tabelas, fórmulas e links.
-2. Adaptar os elementos próprios do modelo e remover os comandos-placeholder, preservando a aparência ABNT e a compilação normal sem marcação.
-3. Incluir validações informativas no CI para os perfis PDF/A-2u e PDF/UA-1, mantendo a publicação do PDF independente da validação informativa.
-4. Revisar o PDF com leitor de tela/visualização da árvore de estrutura, além do veraPDF, antes de afirmar conformidade.
+1. Criar um caso mínimo com `abntex2` e `memoir` e acrescentar gradualmente capa, folha de rosto, resumo, floats e listas até identificar qual componente desequilibra os hooks de parágrafo.
+2. Corrigir ou contornar a incompatibilidade da classe sem deixar conteúdo textual fora da árvore estrutural; se isso exigir uma classe alternativa ou uma adaptação extensa do `memoir`, documentar o impacto antes de trocar a base do modelo.
+3. Adaptar os elementos próprios do modelo, preservando a apresentação ABNT, e confirmar a compilação completa com tagging habilitado.
+4. Incluir validações informativas no CI para os perfis PDF/A-2u e PDF/UA-1, mantendo a publicação do PDF independente da validação informativa.
+5. Revisar o PDF com leitor de tela/visualização da árvore de estrutura, além do veraPDF, antes de afirmar conformidade.
 
 ## Referências técnicas
 
