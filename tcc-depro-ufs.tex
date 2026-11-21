@@ -57,6 +57,10 @@
 \makeatletter
 \pretocmd{\contentsline}{\tagstructbegin{tag=TOC}}{}{}
 \apptocmd{\contentsline}{\tagstructend}{}{}
+\pretocmd{\@makechapterhead}{\tagstructbegin{tag=H1}}{}{}
+\apptocmd{\@makechapterhead}{\tagstructend}{}{}
+\pretocmd{\@makeschapterhead}{\tagstructbegin{tag=H1}}{}{}
+\apptocmd{\@makeschapterhead}{\tagstructend}{}{}
 \makeatother
 
 % ---
