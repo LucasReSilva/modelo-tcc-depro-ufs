@@ -1,0 +1,30 @@
+% Isola o conjunto de elementos pré-textuais com tagging ativo.
+\DocumentMetadata{
+  lang = pt-BR,
+  pdfversion = 1.7,
+  pdfstandard = {a-2u, ua-1},
+  tagging = on
+}
+\documentclass[12pt,a4paper,english,brazil]{abntex2}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\newcommand{\nomealuno}{Nome do aluno}
+\newcommand{\cidade}{São Cristóvão/SE}
+\newcommand{\anoentrega}{2026}
+\newcommand{\dataaprovacao}{dia de mês de 2026}
+\newcommand{\titulotrabalho}{Título do trabalho}
+\newcommand{\subtitulotrabalho}{}
+\newcommand{\nomeorientador}{Nome do professor}
+\newcommand{\titulacaoorientador}{Titulação}
+\newcommand{\nomecoorientador}{}
+\newcommand{\preambulo}{Trabalho de Conclusão de Curso.}
+\begin{document}
+\selectlanguage{brazil}
+\input{pre-textuais/capa}
+\input{pre-textuais/folha-de-rosto}
+\input{pre-textuais/folha-de-aprovacao}
+\input{pre-textuais/agradecimentos}
+\input{pre-textuais/resumo}
+\input{pre-textuais/abstract}
+\end{document}

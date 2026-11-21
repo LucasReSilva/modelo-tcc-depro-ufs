@@ -18,7 +18,7 @@ jobs:
       - name: Compilar tcc-depro-ufs.tex
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: diagnosticos/tagging-abntex2-capa.tex
+          root_file: diagnosticos/tagging-abntex2-pretextuais.tex
           latexmk_use_lualatex: false
 
       - name: Disponibilizar PDF para as etapas seguintes
