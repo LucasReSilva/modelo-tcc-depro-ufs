@@ -53,6 +53,13 @@
 \IfFileExists{pdfpages.sty}{\usepackage{pdfpages}}{}
 \usepackage{hyperref}
 
+% Agrupa somente as entradas lidas dos arquivos .toc/.lof/.lot/.loq/.loc;
+% os títulos dessas listas ficam fora do elemento TOC.
+\makeatletter
+\pretocmd{\@starttoc}{\tagstructbegin{tag=TOC}}{}{}
+\apptocmd{\@starttoc}{\tagstructend}{}{}
+\makeatother
+
 % ---
 % Tipografia dos títulos conforme o modelo DEPRO/UFS e ABNT NBR 6024
 % Seção primária: 12pt, caixa alta, negrito.
