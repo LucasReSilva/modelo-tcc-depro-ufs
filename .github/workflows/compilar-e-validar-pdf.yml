@@ -19,7 +19,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: tcc-depro-ufs.tex
-          latexmk_use_lualatex: true
+          latexmk_use_lualatex: false
 
       - name: Disponibilizar PDF para as etapas seguintes
         uses: actions/upload-artifact@v6
