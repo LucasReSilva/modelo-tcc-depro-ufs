@@ -9,6 +9,13 @@
 \usepackage{graphicx}
 \usepackage{etoolbox}
 \usepackage{hyperref}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\newcommand{\quadroname}{Quadro}
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\tagpdfsetup{float/new=quadro}
 \newcommand{\nomealuno}{Nome do aluno}
 \newcommand{\cidade}{São Cristóvão/SE}
 \newcommand{\anoentrega}{2026}
@@ -29,4 +36,5 @@
 \input{pre-textuais/abstract}
 \chapter{Capítulo de teste}
 Este parágrafo verifica o texto corrido após os elementos pré-textuais.
+\input{capitulos/introducao}
 \end{document}
