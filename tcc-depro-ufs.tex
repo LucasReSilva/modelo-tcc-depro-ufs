@@ -1,3 +1,12 @@
+% PDF/A-2u + PDF/UA-1: ativar o PDF management e o tagging antes da classe.
+% LaTeX 2025-11-01 ou mais recente é necessário para tagging=on.
+\DocumentMetadata{
+  lang = pt-BR,
+  pdfversion = 1.7,
+  pdfstandard = {a-2u, ua-1},
+  tagging = on
+}
+
 % Modelo de TCC do DEPRO/UFS, adaptado do DOCX "Modelo DEPRO 003" e em conformidade
 % com as normas da ABNT (NBR 14724, NBR 6023, NBR 6024, NBR 6027, NBR 6028, NBR 10520).
 % Compilação recomendada: pdfLaTeX + BibTeX + pdfLaTeX + pdfLaTeX (ou latexmk).
@@ -34,13 +43,7 @@
 \usepackage{array}
 \usepackage{csvsimple}
 \usepackage[table]{xcolor}
-% Gera PDF/A-2u segundo ISO 19005-2:2011. pdfx também carrega hyperref.
-\usepackage[a-2u]{pdfx}
-% As anotações de links precisam da flag /F exigida pela ISO 19005-2.
-\makeatletter
-\let\Hy@setpdfborder@pdfa\Hy@setpdfborder
-\def\Hy@setpdfborder{\Hy@setpdfborder@pdfa\space/F 4}
-\makeatother
+% PDF/A-2u, PDF/UA-1 e XMP são configurados pela camada PDF nativa do LaTeX.
 \usepackage{listings}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric}
@@ -48,7 +51,7 @@
 \usepackage[alf]{abntex2cite}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{}
 \IfFileExists{pdfpages.sty}{\usepackage{pdfpages}}{}
-\providecommand{\tagpdfsetup}[1]{}
+\usepackage{hyperref}
 
 % ---
 % Tipografia dos títulos conforme o modelo DEPRO/UFS e ABNT NBR 6024
@@ -217,13 +220,16 @@
 % Metadados, idioma, marcadores e aparência dos links no PDF (acessibilidade)
 \hypersetup{
   hidelinks,
-  bookmarksnumbered=true
+  bookmarksnumbered=true,
+  pdfcopyright={Copyright 2026 Lucas Silva e contribuidores do projeto; licenciado sob MIT},
+  pdflicenseurl={https://github.com/LucasReSilva/modelo-tcc-depro-ufs/blob/main/LICENSE}
 }
 \AtBeginDocument{%
   \hypersetup{
     pdftitle={\titulotrabalho\ifdefempty{\subtitulotrabalho}{}{: \subtitulotrabalho}},
     pdfauthor={\nomealuno},
     pdfsubject={Trabalho de Conclusão de Curso - Engenharia de Produção (DEPRO/UFS)},
+    pdfkeywords={TCC, Engenharia de Produção, UFS, ABNT, LaTeX},
     pdfcreator={LaTeX com abnTeX2}
   }%
 }
