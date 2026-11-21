@@ -53,11 +53,10 @@
 \IfFileExists{pdfpages.sty}{\usepackage{pdfpages}}{}
 \usepackage{hyperref}
 
-% Coloca apenas as entradas lidas dos arquivos .toc/.lof/.lot/.loq/.loc
-% dentro de TOC; os títulos gerados pelas listas permanecem fora da estrutura.
+% Cada entrada de sumário/lista fica dentro de TOC, sem envolver o título da lista.
 \makeatletter
-\pretocmd{\@starttoc}{\tagstructbegin{tag=TOC}}{}{}
-\apptocmd{\@starttoc}{\tagstructend}{}{}
+\pretocmd{\contentsline}{\tagstructbegin{tag=TOC}}{}{}
+\apptocmd{\contentsline}{\tagstructend}{}{}
 \makeatother
 
 % ---
